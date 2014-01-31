@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="jquery.js"></script>
+		<script src="Server.js"></script>
+		<script src="Client.js"></script>
+		<script type="text/javascript">
+			var TheServer;
+			var Self;
+			function Initialize(){
+				TheServer=new Server();
+				Self=new Client("me");
+				Self.ConnectTo(TheServer);
+				alert(TheServer.Clients);
+				localStorage.RememberedServer=JSON.stringify(TheServer);
+				localStorage.RememberedClient=JSON.stringify(Self);
+				Self.SendToHost("INITIALIZATION_REQUEST",[]);
+			}
+		</script>
+	</head>
+	<body onload="Initialize()">
+	</body>
+</html>

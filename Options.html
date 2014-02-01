@@ -1,32 +1,41 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<script src="Client.js"></script>
+		<script src="jquery.js"></script>
+		<script src="Server.js"></script>
+		<script src="LocalStorageDB.js"></script>
 		<script type="text/javascript" src="Shared.js"></script>
 		<link rel="stylesheet" type="text/css" href="Shared.css"></link>
 		<script>
-			var gameDifficulty = 0;
-			var cpuIntelligence = 0;
-			var numberOfRounds = 40;
-			var retirementMinimum = 401000;
-			var enablePatenting = false;
+		
+			var TheServer;
+			var Self;
+			var databaseOfOptions = new LocalStorageDB('OptionsDB');
 			
-			function Initialize(){
-				// Loading the options from a file.
-			}
-			function SaveChanges(){
-				// Saving the options to a file.
-			}
-			function GoToMenu(){
-				//window.location="MainMenu.html";
-			}
-			
-			function readFile()
+			function Initialize()
 			{
-				var file = File("~/countries.txt");
-				file.open("r");
-				var str = file.read();
-				file.close();
-				var myLandList = str.split(/[\r\n]+/);
+				LoadOptions();
+				TheServer=new Server();
+				Self=new Client("me");
+				Self.ConnectTo(TheServer);
+				alert(TheServer.Clients);
+				alert(databaseOfOptions);
+				localStorage.RememberedServer=JSON.stringify(TheServer);
+				localStorage.RememberedClient=JSON.stringify(Self);
+				Self.SendToHost("INITIALIZATION_REQUEST",[]);
+			}
+			
+			function GoToMenu(){
+				window.location="TitlePage.html";
+			}
+			
+			function LoadOptions()
+			{
+				//databaseOfOptions.CREATE('OptionsDB', {id: 0, GameDifficulty: "Normal", CPUIntelligence: "Standard", NumberOfRounds: 40, PatentingEnabled: true, RetirementMinimum: 401000});
+			}
+			function SaveOptions(){
+				//alert("Options not saved yet./nMostly because the programmer is a git.");
 			}
 			
 		</script>
@@ -151,7 +160,7 @@
 			</div>
 			<div class="BigText" id="MainTitle" style="left:40%;top:10%;">Options</div>
 			<button class="Medium RoundEdge" onclick="SaveChanges()" style="left:20%;top:84%;">Save Changes</button>
-			<button class="Medium RoundEdge" onclick="Initialize()" style="left:40.5%;top:84%;">Restore Default</button>
+			<button class="Medium RoundEdge" onclick="LoadOptions()" style="left:40.5%;top:84%;">Restore Default</button>
 			<button class="Medium RoundEdge" onclick="GoToMenu()" style="left:61%;top:84%;">Return to Menu</button>
 		</div>
 	</body>

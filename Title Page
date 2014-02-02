@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<center>
+<h1> The Entrepreneurship Game! </h1>
+</center>
+</head>
+<head>
+	<center>
+Welcome to the entrepreneurship game, Please select from the options below 
+</center>
+</head>
+<br></br>
+<body bgcolor="#AAAAAA">
+
+	<script type="text/javascript">
+	<!--
+	
+	
+	
+	
+	//-!
+	</script>
+	
+	<script src="../Scripts/jquery-1.4.1.js" type="text/javascript"></script>
+	<script type="text/javascript">
+	
+	</script> 
+
+
+
+
+</body>
+<center>
+<form>
+	<input type="button" value="PLAY">
+	<input type="button" value="HOW to PLAY">
+	<input type="button" value="SETTING">
+	
+</form>	
+</center>
+</html>
